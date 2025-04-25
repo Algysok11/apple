@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>	</title>
+	<style type="text/css">
+		.sphere {
+			background-image: url("apple.png");
+			background-size: 100% 100% ;
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			transition: all 0.8s ease-out;
+			top: -100px;
+		}
+		.ground {
+			background-image: url("ground.png");
+			background-size: 100% 100% ;
+			position: absolute;
+			width: 1900px;
+			height: 250px;
+			top:  800px;
+		}
+	</style>
+</head>
+<body style="background: #00ccff;
+background: linear-gradient(85deg, rgba(0, 204, 255, 1) 0%, rgba(0, 102, 255, 1) 50%, rgba(0, 0, 255, 1) 100%);background-size: cover;">
+<h1>Score: <span class="score">0</span></h1>
+<div class="ground">
+	
+</div>
+<script type="text/javascript">
+
+	let score = document.querySelector(".score")
+	let point = 0
+	let topS = 0
+
+	for (let i = 0; i < 10; i++) {
+  	let sphere = document.createElement("div")
+	document.body.appendChild(sphere)
+	sphere.classList.add("sphere")
+	let randomX = Math.round(Math.random()*1800)
+	sphere.style.left = randomX + "px"
+	}
+	let sphera = document.querySelectorAll(".sphere")
+	let sphereID = 0
+
+	
+		
+	
+
+	let speed = function () {
+		topS = topS + 150
+			sphera[sphereID].onclick = function () {
+				sphera[sphereID].style.display = "none"
+				topS = 1000
+				point = point + 20
+				score.innerHTML = point
+				if (point == 180)
+				{
+					alert("you win")
+					stopGame
+				}
+			}
+		sphera[sphereID].style.top = topS + "px"
+		if (topS>=1050){
+			topS = 0
+			sphereID = sphereID + 1
+			if (sphereID == 10) {
+				
+			}
+		}
+	}
+
+	let myInt = setInterval(speed, 300)
+
+	let stopGame = function() {
+		clearInterval(myInt)
+	}
+</script>
+
+</body>
+</html>
